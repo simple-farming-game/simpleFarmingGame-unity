@@ -22,9 +22,6 @@ public class player : MonoBehaviour
     }
 
     void Update(){
-        if (rigid.position.x > Screen.width){
-        }
-
         inputVec.x = Input.GetAxisRaw("Horizontal");
         inputVec.y = Input.GetAxisRaw("Vertical");
         if (Input.GetAxisRaw("Jump") == 1){
@@ -38,6 +35,8 @@ public class player : MonoBehaviour
     void FixedUpdate()
     {
         Vector2 nextVec = inputVec.normalized * speed * Time.fixedDeltaTime;
-        rigid.MovePosition(rigid.position + nextVec);
+        if (rigid.position.x <= 10.5f){
+            rigid.MovePosition(rigid.position + nextVec);
+        }
     }
 }
