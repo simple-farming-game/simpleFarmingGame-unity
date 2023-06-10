@@ -2,11 +2,18 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class move : MonoBehaviour
+public class player : MonoBehaviour
 {
     public Vector2 inputVec;
     public float speed;
     Rigidbody2D rigid;
+
+    void Start()
+    {
+        //Output the current screen window width in the console
+        Debug.Log("Screen Width : " + Screen.width);
+        Debug.Log("Screen Height : " + Screen.height);
+    }
 
     void Awake()
     {
@@ -14,8 +21,10 @@ public class move : MonoBehaviour
         speed = 3;
     }
 
-    void Update()
-    {
+    void Update(){
+        if (rigid.position.x > Screen.width){
+        }
+
         inputVec.x = Input.GetAxisRaw("Horizontal");
         inputVec.y = Input.GetAxisRaw("Vertical");
         if (Input.GetAxisRaw("Jump") == 1){
