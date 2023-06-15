@@ -1,15 +1,18 @@
-using UnityEngine.Audio;
 using UnityEngine.UI;
 using UnityEngine;
 
 public class Sound : MonoBehaviour
 {
-    public AudioMixer audioMixer;
+    public AudioSource SoundAS;
     public Slider SoundBar;
+
+    void Start()
+    {
+        SoundAS = GetComponent<AudioSource>();
+    }
 
     public void SetBgm()
     {
-        audioMixer.SetFloat("BGM", SoundBar.value * 20);
-        Debug.Log(SoundBar.value * 20);
+        SoundAS.volume = SoundBar.value;
     }
 }
