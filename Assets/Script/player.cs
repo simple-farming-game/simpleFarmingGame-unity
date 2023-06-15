@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class player : MonoBehaviour
+public class Player : MonoBehaviour
 {
     public Vector2 inputVec;
     public float speed;
@@ -35,8 +35,12 @@ public class player : MonoBehaviour
     void FixedUpdate()
     {
         Vector2 nextVec = inputVec.normalized * speed * Time.fixedDeltaTime;
-        if (rigid.position.x <= 10.5f){
-            rigid.MovePosition(rigid.position + nextVec);
+        Vector2 absVec = nextVec;
+        absVec.x = Mathf.Abs(nextVec.x);
+        absVec.y = 0;
+        rigid.MovePosition(rigid.position + nextVec);
+        if (rigid.position.x >= 10.5f){
+            rigid.MovePosition(rigid.position + absVec);
         }
     }
 }
